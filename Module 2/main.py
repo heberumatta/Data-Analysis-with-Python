@@ -1,3 +1,6 @@
+#Data Cleaning | Data preprocessing | Data Wrangling
+#The process of converting or mapping data from the initial "raw" dorm into another format,
+#in order to prepare the data for further analysis.
 #Learning Objectives
 #   Identify and handle missing values
 #   Data formatting
@@ -15,8 +18,36 @@ df = pd.read_csv(path, header=None)
 
 #If you want to see a specific column, you can use the following code:
 #df['column_name'] #this will show the specified column of the data frame
-print(df[0]) #this will show the first column of the data frame
+df[0] #this will show the first column of the data frame
 
-#Data Cleaning | Data preprocessing | Data Wrangling
-#The process of converting or mapping data from the initial "raw" dorm into another format,
-#in order to prepare the data for further analysis.
+#Dealing with missing values
+#Missing values occur when no data value is stored for the variable in an observation.
+#They can be represented as NaN, NULL, ?, 0 or simply a blank cell.
+#How to deal with missung data?
+#1. check with the data collection source
+#2. Drop the missing values
+#3. Replace the missing values with some other value (mean, median, mode, etc.)
+#4. Leave the missing values as they are (if the analysis method can handle them)
+
+# Use: dataframes.dropna() to drop the missing values
+#   You need to specify the axis (0 for rows, 1 for columns) and the how parameter (any or all)
+#   inplace=True will modify the original dataframe, if False it will return a new dataframe with the missing values dropped
+#   Example: df.dropna(subset=["price"], axis=0, inplace=True)
+# Use: dataframe.replace() to replace the missing values with some other value
+#   You need to specify the to_replace parameter (the value to be replaced) and the value parameter (the value to replace with)
+#   Example: df.replace(missing_value, new_value)
+#   To replace if we want to calculate the mean, median or mode of a column, we can use the following code:
+#   mean = df[column_name].mean()
+
+#Data formatting
+#Data are usually collected from different places and stored in different formats.
+#Bringing data into a common standard of expression allows users to make meaningful comparison.
+
+#Applying calculations to an entire column
+#For example, if we wantr to convert "mpg" to "L/100km", we can use the following code:
+#df[mpg_column] = 235 / df[mpg_column] We use just one line of code
+#The you can rename the column to "L/100km" using the following code: 
+#df.rename(columns={mpg_column: "L/100km"}, inplace=True)
+
+#When we apliy calculations there can be incorrect data types, we can use the following code to change the data type of a column:
+#df[column_name] = df[column_name].astype(new_data_type)
