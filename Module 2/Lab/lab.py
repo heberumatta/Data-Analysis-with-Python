@@ -23,3 +23,6 @@ df["normalized-losses"] = df["normalized-losses"].replace(np.nan, avg_normalized
 df["normalized-losses"] = df["normalized-losses"].astype("float")
 print(df["normalized-losses"].head(20))
 
+df["stroke"] = df["stroke"].replace(np.nan, df["stroke"].astype("float").mean(axis=0))
+df["stroke"] = df["stroke"].astype("float")
+print(df["stroke"].head(20))
