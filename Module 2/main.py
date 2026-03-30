@@ -66,3 +66,25 @@ df.columns = headers
 # df["price_binned"] = pd.cut(df["price"], bins, labels=group_names, include_lowest=True)
 
 #Turning categorical values to numeric variables
+
+
+#My code
+
+df["price"] = df["price"].replace("?", np.nan)
+df.dropna(subset=["price"], axis=0, inplace=True, how="all")
+
+df["price"] = df["price"].astype("float")
+#print(df["price"])
+
+#To covert the price USD to pesos:
+df["price"] = df["price"]*1500
+df.rename(columns={"price": "price_pesos"}, inplace=True)
+
+bins = np.linspace(min(df["price_pesos"]), max(df["price_pesos"]), 4)
+goup_names = ["Low", "Medium", "High"]
+df["price_binned"] = pd.cut(df["price_pesos"], bins, labels=goup_names, include_lowest=True)
+#Explanation: we are creating a new column called "price_binned" and we are using the pd.cut() function to bin the
+#"price_pesos" column into 3 bins (Low, Medium, High) based on the values of the "price_pesos" column. The bins are 
+#created using the np.linspace() function which creates an array of equally spaced values between the minimum and
+#maximum values of the "price_pesos" column. The include_lowest=True parameter is used to include the lowest value in the first bin.
+print(df[["price_pesos", "price_binned"]].head(20))
