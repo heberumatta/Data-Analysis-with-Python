@@ -66,8 +66,11 @@ df.columns = headers
 # df["price_binned"] = pd.cut(df["price"], bins, labels=group_names, include_lowest=True)
 
 #Turning categorical values to numeric variables
-
-
+# Use pandas.get_dummies() to convert categorical variables into dummy/indicator variables
+# Example:
+df = pd.get_dummies(df, columns=["fuel-type"])
+print(df[["fuel-type_diesel", "fuel-type_gas"]].head(10))
+#now to convert both columns into one column we can use the following code:
 #My code
 
 df["price"] = df["price"].replace("?", np.nan)
@@ -87,4 +90,5 @@ df["price_binned"] = pd.cut(df["price_pesos"], bins, labels=goup_names, include_
 #"price_pesos" column into 3 bins (Low, Medium, High) based on the values of the "price_pesos" column. The bins are 
 #created using the np.linspace() function which creates an array of equally spaced values between the minimum and
 #maximum values of the "price_pesos" column. The include_lowest=True parameter is used to include the lowest value in the first bin.
-print(df[["price_pesos", "price_binned"]].head(20))
+#print(df[["price_pesos", "price_binned"]].head(20))
+
