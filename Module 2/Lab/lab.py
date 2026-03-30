@@ -22,4 +22,4 @@ print("Average of normalized-losses:", avg_normalized_losses)
 df["normalized-losses"] = df["normalized-losses"].replace(np.nan, avg_normalized_losses)
 df["normalized-losses"] = df["normalized-losses"].astype("float")
 print(df["normalized-losses"].head(20))
-
+#papanga
