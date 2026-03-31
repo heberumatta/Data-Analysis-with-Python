@@ -16,6 +16,7 @@ missing_data = df.isnull()
 #     print(missing_data[column].value_counts())
 #     print("")
 
+#Question 1.
 avg_normalized_losses = df["normalized-losses"].astype("float").mean(axis=0)
 print("Average of normalized-losses:", avg_normalized_losses)
 
@@ -26,3 +27,8 @@ print(df["normalized-losses"].head(20))
 df["stroke"] = df["stroke"].replace(np.nan, df["stroke"].astype("float").mean(axis=0))
 df["stroke"] = df["stroke"].astype("float")
 print(df["stroke"].head(20))
+
+#Question 2.
+df["highway-mpg"].rename("highway-km", inplace=True)
+print(df["highway-km"].head(20))
+
